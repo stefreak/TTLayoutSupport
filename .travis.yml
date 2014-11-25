@@ -3,8 +3,16 @@
 # * https://github.com/supermarin/xcpretty#usage
 
 language: objective-c
+env:
+  matrix:
+    - TEST_SDK=iphonesimulator6.0 SIMULATOR=iphone
+    - TEST_SDK=iphonesimulator6.1 SIMULATOR=iphone
+    - TEST_SDK=iphonesimulator7.0 SIMULATOR=iphone
+    - TEST_SDK=iphonesimulator7.1 SIMULATOR=iphone
+    - TEST_SDK=iphonesimulator8.0 SIMULATOR=iphone
+    - TEST_SDK=iphonesimulator8.1 SIMULATOR=iphone
 # before_install: cd Example && pod install && cd -
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-- set -o pipefail && xcodebuild test -workspace Example/TTLayoutSupport.xcworkspace -scheme TTLayoutSupport -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace Example/TTLayoutSupport.xcworkspace -scheme TTLayoutSupport -sdk $TEST_SDK -simulator $SIMULATOR ONLY_ACTIVE_ARCH=NO | xcpretty -c
