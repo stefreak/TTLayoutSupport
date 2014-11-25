@@ -1,0 +1,20 @@
+PODS:
+  - FBSnapshotTestCase (1.4)
+  - Kiwi (2.3.1)
+  - TTLayoutSupport (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - Kiwi
+  - TTLayoutSupport (from `../`)
+
+EXTERNAL SOURCES:
+  TTLayoutSupport:
+    :path: ../
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: f9f225b5ba11c8d8c09075590490df16314e4d62
+  Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
+  TTLayoutSupport: 92a7441aebe001187c163802d069e7dc2f57b30e
+
+COCOAPODS: 0.34.4

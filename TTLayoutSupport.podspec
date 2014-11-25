@@ -10,21 +10,21 @@
 Pod::Spec.new do |s|
   s.name             = "TTLayoutSupport"
   s.version          = "0.1.0"
-  s.summary          = "A short description of TTLayoutSupport."
-  s.description      = <<-DESC
-                       An optional longer description of TTLayoutSupport
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/TTLayoutSupport"
+  s.summary          = "Category for UIViewController to make it possible to control the length of the topLayoutGuide and bottomLayoutGuide"
+#  s.description      = <<-DESC
+#                       An optional longer description of TTLayoutSupport
+#
+#                       * Markdown format.
+#                       * Don't worry about the indent, we strip it!
+#                       DESC
+  s.homepage         = "https://github.com/stefreak/TTLayoutSupport"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Steffen Neubauer" => "stefreak@googlemail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/TTLayoutSupport.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/stefreak/TTLayoutSupport.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/stefreak'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '6.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'

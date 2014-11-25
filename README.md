@@ -5,11 +5,18 @@
 [![License](https://img.shields.io/cocoapods/l/TTLayoutSupport.svg?style=flat)](http://cocoadocs.org/docsets/TTLayoutSupport)
 [![Platform](https://img.shields.io/cocoapods/p/TTLayoutSupport.svg?style=flat)](http://cocoadocs.org/docsets/TTLayoutSupport)
 
+![Screenshot of example](https://raw.githubusercontent.com/stefreak/TTLayoutSupport/master/example.png)
+
 ## Usage
+
+Just import `UIViewController+TTLayoutSupport.h` and you can manipulate `topLayoutGuide` and `bottomLayoutGuide`
+via the `tt_topLayoutGuideLength` and `tt_bottomLayoutGuideLength` properties.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+Supports iOS6 to iOS8. Requires ARC
 
 ## Installation
 

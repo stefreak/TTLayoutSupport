@@ -7,12 +7,28 @@
 //
 
 #import "TTAppDelegate.h"
+#import "TTDemoParentViewController.h"
+#import "TTDemoChildViewController.h"
+#import "TTDemoScrollViewController.h"
+#import "TTDemoTableViewController.h"
+#import "TTDemoCollectionViewController.h"
+
+@interface TTAppDelegate ()
+
+@property (nonatomic, strong) UITabBarController *tabBarController;
+
+@end
 
 @implementation TTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+    self.window.rootViewController = self.tabBarController;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							
@@ -41,6 +57,39 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (UITabBarController *)tabBarController
+{
+    if (_tabBarController) {
+        return _tabBarController;
+    }
+
+    _tabBarController = [[UITabBarController alloc] init];
+    
+    UINavigationController *uiviewcontrollerDemo = [[UINavigationController alloc] init];
+    uiviewcontrollerDemo.tabBarItem.title = @"No ScrollView";
+    uiviewcontrollerDemo.viewControllers = @[[[TTDemoParentViewController alloc] initWithChildViewController:
+                                              [[TTDemoChildViewController alloc] init]]];
+
+    UINavigationController *uiviewcontrollerScrollviewDemo = [[UINavigationController alloc] init];
+    uiviewcontrollerScrollviewDemo.viewControllers = @[[[TTDemoParentViewController alloc] initWithChildViewController:
+                                                        [[TTDemoScrollViewController alloc] init]]];
+    uiviewcontrollerScrollviewDemo.tabBarItem.title = @"ScrollView";
+    
+    UINavigationController *uitableviewcontrollerDemo = [[UINavigationController alloc] init];
+    uitableviewcontrollerDemo.viewControllers = @[[[TTDemoParentViewController alloc] initWithChildViewController:
+                                                   [[TTDemoTableViewController alloc] init]]];
+    uitableviewcontrollerDemo.tabBarItem.title = @"TableView";
+
+    UINavigationController *uicollectionviewcontrollerDemo = [[UINavigationController alloc] init];
+    uicollectionviewcontrollerDemo.viewControllers = @[[[TTDemoParentViewController alloc] initWithChildViewController:
+                                                        [[TTDemoCollectionViewController alloc] init]]];
+    uicollectionviewcontrollerDemo.tabBarItem.title = @"CollectionView";
+    
+    _tabBarController.viewControllers = @[uiviewcontrollerDemo, uiviewcontrollerScrollviewDemo, uitableviewcontrollerDemo, uicollectionviewcontrollerDemo];
+    
+    return _tabBarController;
 }
 
 @end
