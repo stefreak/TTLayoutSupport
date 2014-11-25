@@ -81,9 +81,14 @@
         return;
     }
 
+    // recording does not work if view has never been accessed
+    __unused UIView *view = self.view;
+    
     // if topLayoutGuide has never been accessed, we did not record yet.
     __unused id<UILayoutSupport> topLayoutGuide = self.topLayoutGuide;
 
+    NSAssert(self.tt_recordedTopLayoutSupportConstraints.count, @"Failed to record topLayoutGuide constraints. Is the controller's view added to the view hierarchy?");
+    
     [self.view removeConstraints:self.tt_recordedTopLayoutSupportConstraints];
     
     NSArray *constraints =
@@ -103,9 +108,14 @@
         return;
     }
 
+    // recording does not work if view has never been accessed
+    __unused UIView *view = self.view;
+    
     // if bottomLayoutGuide has never been accessed, we did not record yet.
     __unused id<UILayoutSupport> bottomLayoutGuide = self.bottomLayoutGuide;
 
+    NSAssert(self.tt_recordedBottomLayoutSupportConstraints.count, @"Failed to record bottomLayoutGuide constraints. Is the controller's view added to the view hierarchy?");
+    
     [self.view removeConstraints:self.tt_recordedBottomLayoutSupportConstraints];
     
     NSArray *constraints =
@@ -161,7 +171,7 @@
     self.tt_recordedTopLayoutSupportConstraints = [self recordAddedConstraints:^{
         topLayoutGuide = [self tt_topLayoutGuide];
     }];
-    
+
     return topLayoutGuide;
 }
 
