@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/TTLayoutSupport.svg?style=flat)](http://cocoadocs.org/docsets/TTLayoutSupport)
 [![Platform](https://img.shields.io/cocoapods/p/TTLayoutSupport.svg?style=flat)](http://cocoadocs.org/docsets/TTLayoutSupport)
 
+A Category for UIViewController to make it possible to change the length of topLayoutGuide and bottomLayoutGuide
+
 ![Screenshot of example](https://raw.githubusercontent.com/stefreak/TTLayoutSupport/master/example.png)
 
 ## Usage
