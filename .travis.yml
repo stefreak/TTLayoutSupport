@@ -5,11 +5,9 @@
 language: objective-c
 env:
   matrix:
-    - TEST_SDK=iphonesimulator6.0 SIMULATOR=iphone
-    - TEST_SDK=iphonesimulator6.1 SIMULATOR=iphone
-    - TEST_SDK=iphonesimulator7.0 SIMULATOR=iphone
-    - TEST_SDK=iphonesimulator7.1 SIMULATOR=iphone
-    - TEST_SDK=iphonesimulator8.0 SIMULATOR=iphone
-    - TEST_SDK=iphonesimulator8.1 SIMULATOR=iphone
+    - TEST_SDK=iphonesimulator7.0
+    - TEST_SDK=iphonesimulator7.1
+    - TEST_SDK=iphonesimulator8.0
+    - TEST_SDK=iphonesimulator8.1
 script:
-- xctool test -workspace Example/TTLayoutSupport.xcworkspace -scheme TTLayoutSupport -test-sdk $TEST_SDK -simulator $SIMULATOR
+- xctool build-tests && xctool test -test-sdk $TEST_SDK

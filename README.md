@@ -22,7 +22,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-Supports iOS6 to iOS8. Requires ARC
+Supports iOS7 to iOS8. Requires ARC
 
 ## Installation
 

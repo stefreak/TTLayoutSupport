@@ -1,0 +1,7 @@
+[
+  "-workspace", "Example/TTLayoutSupport.xcworkspace/",
+  "-scheme", "TTLayoutSupport-Example",
+  "-configuration", "Debug",
+  "-sdk", "iphonesimulator",
+  "-arch", "i386"
+]
