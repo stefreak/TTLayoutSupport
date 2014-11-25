@@ -17,12 +17,15 @@ SPEC_BEGIN(InitialTests)
 describe(@"TTLayoutSupport", ^{
 
     
-    context(@"without being added to the view hierarchy", ^{
+    context(@"without UIScrollView", ^{
         
         __block TTDemoChildViewController *controller;
+        __block UIView *superview;
         
         beforeEach(^{
+            superview = [UIView new];
             controller = [TTDemoChildViewController new];
+            [superview addSubview:controller.view];
         });
         
         it(@"can change the topLayoutGuideLength", ^{
@@ -42,7 +45,7 @@ describe(@"TTLayoutSupport", ^{
         });
     });
     
-  context(@"without UIScrollView", ^{
+  context(@"without being added to the view hierarchy", ^{
 
       __block TTDemoChildViewController *controller;
 
@@ -79,6 +82,8 @@ describe(@"TTLayoutSupport", ^{
           [superview addSubview:controller.view];
 
           scrollView = (UIScrollView *)controller.view;
+          scrollView.frame = CGRectMake(0, 0, 320, 640);
+          scrollView.contentSize = CGSizeMake(320, 2000);
       });
       
       it(@"adjusts contentInsets for ScrollViews", ^{
@@ -92,16 +97,16 @@ describe(@"TTLayoutSupport", ^{
           controller.tt_topLayoutGuideLength = 50;
           controller.tt_bottomLayoutGuideLength = 100;
           
-          [[theValue(scrollView.contentOffset) should] equal:theValue(CGPointMake(0, -50))];
+          [[theValue(scrollView.contentOffset.y) should] equal:@(-50)];
       });
       
       it(@"does not adjust contentOffset for scrollViews that are not scrolled to top at the moment the guide changes", ^{
-          scrollView.contentOffset = CGPointMake(0, 33);
+          scrollView.contentOffset = CGPointMake(0, 44);
           
-          controller.tt_topLayoutGuideLength = 50;
+          controller.tt_topLayoutGuideLength = 20;
           controller.tt_bottomLayoutGuideLength = 100;
           
-          [[theValue(scrollView.contentOffset) should] equal:theValue(CGPointMake(0, 33))];
+          [[theValue(scrollView.contentOffset.y) should] equal:@(44)];
       });
       
       it(@"does not adjust contentOffset or contentInset if automaticallyAdjustsScrollViewInsets is true", ^{
@@ -110,7 +115,7 @@ describe(@"TTLayoutSupport", ^{
           controller.tt_topLayoutGuideLength = 50;
           controller.tt_bottomLayoutGuideLength = 100;
           
-          [[theValue(scrollView.contentOffset) should] equal:theValue(CGPointZero)];
+          [[theValue(scrollView.contentOffset.y) should] equal:@(0)];
           [[theValue(scrollView.contentInset) should] equal:theValue(UIEdgeInsetsZero)];
       });
       

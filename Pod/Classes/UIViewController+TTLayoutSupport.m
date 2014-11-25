@@ -57,7 +57,7 @@
     
     self.tt_topConstraint.constant = length;
     
-    [self tt_updateInsets];
+    [self tt_updateInsets:YES];
 }
 
 - (CGFloat)tt_bottomLayoutGuideLength
@@ -71,7 +71,7 @@
 
     self.tt_bottomConstraint.constant = length;
     
-    [self tt_updateInsets];
+    [self tt_updateInsets:NO];
 }
 
 - (void)tt_ensureCustomTopConstraint
@@ -128,7 +128,7 @@
     [self.view addConstraints:constraints];
 }
 
-- (void)tt_updateInsets
+- (void)tt_updateInsets:(BOOL)adjustsScrollPosition
 {
     // don't update scroll view insets if developer didn't want it
     if (!self.automaticallyAdjustsScrollViewInsets) {
@@ -152,7 +152,7 @@
         scrollView.contentInset = insets;
         scrollView.scrollIndicatorInsets = insets;
         
-        if (previousContentOffset.y == 0) {
+        if (adjustsScrollPosition && previousContentOffset.y == 0) {
             scrollView.contentOffset = CGPointMake(previousContentOffset.x, -scrollView.contentInset.top);
         }
     }
