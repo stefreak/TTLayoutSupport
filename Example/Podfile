@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'TTLayoutSupport', :exclusive => true do
+  pod "TTLayoutSupport", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "TTLayoutSupport", :path => "../"
+
+  pod 'Kiwi'
+  pod 'FBSnapshotTestCase'
+end
