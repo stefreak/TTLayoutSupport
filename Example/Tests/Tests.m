@@ -26,13 +26,14 @@ describe(@"TTLayoutSupport", ^{
             superview = [UIView new];
             controller = [TTDemoChildViewController new];
             [superview addSubview:controller.view];
+            controller.view.frame = CGRectMake(0, 0, 320, 640);
         });
         
         it(@"can change the topLayoutGuideLength", ^{
             [[theValue(controller.topLayoutGuide.length) should] equal:@0];
             
             controller.tt_topLayoutGuideLength = 50;
-            
+
             [[theValue(controller.topLayoutGuide.length) should] equal:@50];
         });
         

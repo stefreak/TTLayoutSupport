@@ -57,6 +57,10 @@
     
     self.tt_topConstraint.constant = length;
     
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+    [self.view layoutSubviews];
+    
     [self tt_updateInsets:YES];
 }
 
@@ -70,6 +74,10 @@
     [self tt_ensureCustomBottomConstraint];
 
     self.tt_bottomConstraint.constant = length;
+    
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+    [self.view layoutSubviews];
     
     [self tt_updateInsets:NO];
 }

@@ -12,4 +12,4 @@ env:
     - TEST_SDK=iphonesimulator8.0 SIMULATOR=iphone
     - TEST_SDK=iphonesimulator8.1 SIMULATOR=iphone
 script:
-- xctool test -workspace Example/TTLayoutSupport.xcworkspace -scheme TTLayoutSupport -sdk=iphonesimulator -test-sdk $TEST_SDK -simulator $SIMULATOR
+- xctool test -workspace Example/TTLayoutSupport.xcworkspace -scheme TTLayoutSupport -test-sdk $TEST_SDK -simulator $SIMULATOR
