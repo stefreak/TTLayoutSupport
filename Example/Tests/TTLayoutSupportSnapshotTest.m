@@ -15,7 +15,26 @@
 
 #define V(__identifier) ([NSString stringWithFormat:@"%@-%@", __identifier, [[UIDevice currentDevice] systemVersion]])
 
+@interface UIView (LayoutSubtree)
 
+- (void)tt_layoutAllSubviews;
+
+@end
+
+@implementation UIView (LayoutSubtree)
+
+- (void)tt_layoutAllSubviews
+{
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    [self layoutSubviews];
+
+    for (UIView *view in self.subviews) {
+        [view tt_layoutAllSubviews];
+    }
+}
+
+@end
 
 @interface TTLayoutSupportSnapshotTest ()
 
@@ -55,6 +74,12 @@
 //    [self.viewToTest setNeedsLayout];
 }
 
+- (void)verify:(NSString *)identifier
+{
+    [self.viewToTest tt_layoutAllSubviews];
+    FBSnapshotVerifyView(self.viewToTest, identifier);
+}
+
 #pragma mark - without scrollview
 
 - (void)testTopLayoutGuideWithoutScrollview
@@ -64,10 +89,10 @@
     self.withoutScrollView.tt_bottomLayoutGuideLength = 0;
     
     self.withoutScrollView.tt_topLayoutGuideLength = 0;
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 0, bottom 0 - w_o scrollview"));
+    [self verify:V(@"top 0, bottom 0 - w_o scrollview")];
     
     self.withoutScrollView.tt_topLayoutGuideLength = 50;
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 50, bottom 0 - w_o scrollview"));
+    [self verify:V(@"top 50, bottom 0 - w_o scrollview")];
 }
 
 - (void)testBottomLayoutGuideWithoutScrollview
@@ -77,7 +102,7 @@
     self.withoutScrollView.tt_topLayoutGuideLength = 0;
     self.withoutScrollView.tt_bottomLayoutGuideLength = 100;
     
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 0, bottom 100 - w_o scrollview"));
+    [self verify:V(@"top 0, bottom 100 - w_o scrollview")];
 }
 
 - (void)testBothWithoutScrollView
@@ -87,7 +112,7 @@
     self.withoutScrollView.tt_topLayoutGuideLength = 200;
     self.withoutScrollView.tt_bottomLayoutGuideLength = 100;
     
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 200, bottom 100 - w_o scrollview"));
+    [self verify:V(@"top 200, bottom 100 - w_o scrollview")];
 }
 
 #pragma mark - plan scrollview
@@ -99,10 +124,10 @@
     self.plainScrollView.tt_bottomLayoutGuideLength = 0;
     
     self.plainScrollView.tt_topLayoutGuideLength = 0;
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 0, bottom 0 - plain scrollview"));
-    
+    [self verify:V(@"top 0, bottom 0 - plain scrollview")];
+
     self.plainScrollView.tt_topLayoutGuideLength = 50;
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 50, bottom 0 - plain scrollview"));
+    [self verify:V(@"top 50, bottom 0 - plain scrollview")];
 }
 
 - (void)testBottomLayoutGuideWithPlainScrollview
@@ -112,7 +137,7 @@
     self.plainScrollView.tt_topLayoutGuideLength = 0;
     self.plainScrollView.tt_bottomLayoutGuideLength = 100;
     
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 0, bottom 100 - plain scrollview"));
+    [self verify:V(@"top 0, bottom 100 - plain scrollview")];
 }
 
 - (void)testBothWithPlainScrollview
@@ -122,7 +147,7 @@
     self.plainScrollView.tt_topLayoutGuideLength = 200;
     self.plainScrollView.tt_bottomLayoutGuideLength = 100;
     
-    FBSnapshotVerifyView(self.viewToTest, V(@"top 200, bottom 100 - plain scrollview"));
+    [self verify:V(@"top 200, bottom 100 - plain scrollview")];
 }
 
 @end

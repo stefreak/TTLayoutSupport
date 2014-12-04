@@ -48,7 +48,7 @@
 
 - (CGFloat)tt_topLayoutGuideLength
 {
-    return self.topLayoutGuide.length;
+    return self.tt_topConstraint ? self.tt_topConstraint.constant : self.topLayoutGuide.length;
 }
 
 - (void)setTt_topLayoutGuideLength:(CGFloat)length
@@ -56,7 +56,7 @@
     [self tt_ensureCustomTopConstraint];
     
     self.tt_topConstraint.constant = length;
-    
+
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];
     [self.view layoutSubviews];
@@ -66,7 +66,7 @@
 
 - (CGFloat)tt_bottomLayoutGuideLength
 {
-    return self.bottomLayoutGuide.length;
+    return self.tt_bottomConstraint ? self.tt_bottomConstraint.constant : self.bottomLayoutGuide.length;
 }
 
 - (void)setTt_bottomLayoutGuideLength:(CGFloat)length
@@ -156,7 +156,7 @@
     if ([scrollView isKindOfClass:[UIScrollView class]]) {
         CGPoint previousContentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y + scrollView.contentInset.top);
 
-        UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+        UIEdgeInsets insets = UIEdgeInsetsMake(self.tt_topLayoutGuideLength, 0, self.tt_bottomLayoutGuideLength, 0);
         scrollView.contentInset = insets;
         scrollView.scrollIndicatorInsets = insets;
         
