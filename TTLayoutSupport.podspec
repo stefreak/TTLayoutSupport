@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TTLayoutSupport"
-  s.version          = "0.2.0"
+  s.version          = "0.2.1"
   s.summary          = "Makes it possible to modify the topLayoutGuide and bottomLayoutGuide of any UIViewController"
 #  s.description      = <<-DESC
 #                       An optional longer description of TTLayoutSupport
