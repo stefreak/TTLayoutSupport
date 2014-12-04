@@ -5,9 +5,7 @@
 language: objective-c
 env:
   matrix:
-    - TEST_SDK=iphonesimulator7.0
     - TEST_SDK=iphonesimulator7.1
-#    - TEST_SDK=iphonesimulator8.0 -- 8.0 seems to be missing on travis
     - TEST_SDK=iphonesimulator8.1
 script:
 - xctool build-tests && xctool run-tests -test-sdk $TEST_SDK
