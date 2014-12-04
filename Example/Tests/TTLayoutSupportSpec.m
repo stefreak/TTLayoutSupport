@@ -34,6 +34,9 @@ describe(@"TTLayoutSupport", ^{
             
             controller.tt_topLayoutGuideLength = 50;
 
+            [((UIView *)controller.topLayoutGuide) setNeedsLayout];
+            [((UIView *)controller.topLayoutGuide) layoutIfNeeded];
+            
             [[theValue(controller.topLayoutGuide.length) should] equal:@50];
         });
         
@@ -41,6 +44,9 @@ describe(@"TTLayoutSupport", ^{
             [[theValue(controller.bottomLayoutGuide.length) should] equal:@0];
             
             controller.tt_bottomLayoutGuideLength = 50;
+
+            [((UIView *)controller.bottomLayoutGuide) setNeedsLayout];
+            [((UIView *)controller.bottomLayoutGuide) layoutIfNeeded];
             
             [[theValue(controller.bottomLayoutGuide.length) should] equal:@50];
         });
