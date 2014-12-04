@@ -1,6 +1,6 @@
 # TTLayoutSupport
 
-[![CI Status](http://img.shields.io/travis/stefreak/TTLayoutSupport.svg?style=flat)](https://travis-ci.org/Steffen Neubauer/TTLayoutSupport)
+[![CI Status](http://img.shields.io/travis/stefreak/TTLayoutSupport.svg?style=flat)](https://travis-ci.org/stefreak/TTLayoutSupport)
 [![Version](https://img.shields.io/cocoapods/v/TTLayoutSupport.svg?style=flat)](http://cocoadocs.org/docsets/TTLayoutSupport)
 [![License](https://img.shields.io/cocoapods/l/TTLayoutSupport.svg?style=flat)](http://cocoadocs.org/docsets/TTLayoutSupport)
 [![Platform](https://img.shields.io/cocoapods/p/TTLayoutSupport.svg?style=flat)](http://cocoadocs.org/docsets/TTLayoutSupport)
