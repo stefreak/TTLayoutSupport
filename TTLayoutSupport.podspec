@@ -9,8 +9,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "TTLayoutSupport"
-  s.version          = "0.1.0"
-  s.summary          = "Category for UIViewController to make it possible to control the length of the topLayoutGuide and bottomLayoutGuide"
+  s.version          = "0.2.0"
+  s.summary          = "Makes it possible to modify the topLayoutGuide and bottomLayoutGuide of any UIViewController"
 #  s.description      = <<-DESC
 #                       An optional longer description of TTLayoutSupport
 #
