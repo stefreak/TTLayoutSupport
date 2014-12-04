@@ -41,6 +41,7 @@
 - (void)addArrow
 {
     UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow"]];
+    arrow.translatesAutoresizingMaskIntoConstraints = NO;
     arrow.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:arrow];
     

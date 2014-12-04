@@ -56,6 +56,8 @@
     
     [self topSliderDidChange:self.topSlider];
     [self bottomSliderDidChange:self.bottomSlider];
+    
+    [self.view layoutSubviews];
 }
 
 #pragma mark - UISlider actions
