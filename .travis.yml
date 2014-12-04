@@ -10,4 +10,4 @@ env:
     - TEST_SDK=iphonesimulator8.0
     - TEST_SDK=iphonesimulator8.1
 script:
-- xctool build-tests && xctool test -test-sdk $TEST_SDK
+- xctool build-tests && xctool run-tests -test-sdk $TEST_SDK
