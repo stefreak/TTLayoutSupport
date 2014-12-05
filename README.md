@@ -7,7 +7,7 @@
 
 A Category for UIViewController to make it possible to change the length of topLayoutGuide and bottomLayoutGuide
 
-Useful for creating child / parent viewController relationships with translucent navigation bars.
+Useful for creating child / parent viewController relationships with translucent navigation bars, for example a `UITabBarController`-like controller that features translucent bars; [Here is an example for that](https://github.com/stefreak/TTLayoutSupport/blob/master/Example/TTLayoutSupport/TTDemoParentViewController.m).
 
 Even respects `automaticallyAdjustsScrollViewInsets` property, just like UINavigationController does.
 
