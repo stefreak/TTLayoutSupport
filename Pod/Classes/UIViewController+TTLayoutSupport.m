@@ -28,24 +28,6 @@
 
 @implementation UIViewController (TTLayoutSupport)
 
-+ (void)load
-{
-    [self swizzle:[self class] from:@selector(topLayoutGuide) to:@selector(tt_topLayoutGuide)];
-    [self swizzle:[self class] from:@selector(bottomLayoutGuide) to:@selector(tt_bottomLayoutGuide)];
-}
-
-+ (void)swizzle:(Class)class from:(SEL)originalSel to:(SEL)newSel
-{
-    Method originalMethod = class_getInstanceMethod(class, originalSel);
-    Method newMethod = class_getInstanceMethod(class, newSel);
-    
-    if (class_addMethod(class, originalSel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-        class_replaceMethod(class, newSel, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-    } else {
-        method_exchangeImplementations(originalMethod, newMethod);
-    }
-}
-
 - (CGFloat)tt_topLayoutGuideLength
 {
     return self.tt_topConstraint ? self.tt_topConstraint.constant : self.topLayoutGuide.length;
@@ -80,17 +62,16 @@
         // already created
         return;
     }
-
+    
     // recording does not work if view has never been accessed
     __unused UIView *view = self.view;
-    
-    // if topLayoutGuide has never been accessed, we did not record yet.
+    // if topLayoutGuide has never been accessed it may not exist yet
     __unused id<UILayoutSupport> topLayoutGuide = self.topLayoutGuide;
 
+    self.tt_recordedTopLayoutSupportConstraints = [self findLayoutSupportConstraintsFor:self.topLayoutGuide];
     NSAssert(self.tt_recordedTopLayoutSupportConstraints.count, @"Failed to record topLayoutGuide constraints. Is the controller's view added to the view hierarchy?");
-    
     [self.view removeConstraints:self.tt_recordedTopLayoutSupportConstraints];
-    
+
     NSArray *constraints =
         [TTLayoutSupportConstraint layoutSupportConstraintsWithView:self.view
                                                      topLayoutGuide:self.topLayoutGuide];
@@ -110,12 +91,11 @@
 
     // recording does not work if view has never been accessed
     __unused UIView *view = self.view;
-    
-    // if bottomLayoutGuide has never been accessed, we did not record yet.
+    // if bottomLayoutGuide has never been accessed it may not exist yet
     __unused id<UILayoutSupport> bottomLayoutGuide = self.bottomLayoutGuide;
 
+    self.tt_recordedBottomLayoutSupportConstraints = [self findLayoutSupportConstraintsFor:self.bottomLayoutGuide];
     NSAssert(self.tt_recordedBottomLayoutSupportConstraints.count, @"Failed to record bottomLayoutGuide constraints. Is the controller's view added to the view hierarchy?");
-    
     [self.view removeConstraints:self.tt_recordedBottomLayoutSupportConstraints];
     
     NSArray *constraints =
@@ -126,6 +106,20 @@
     self.tt_bottomConstraint = [constraints firstObject];
     
     [self.view addConstraints:constraints];
+}
+
+- (NSArray *)findLayoutSupportConstraintsFor:(id<UILayoutSupport>)layoutGuide
+{
+    NSMutableArray *recordedLayoutConstraints = [[NSMutableArray alloc] init];
+
+    for (NSLayoutConstraint *constraint in self.view.constraints) {
+        // I think an equality check is the fastest check we can make here
+        if (constraint.firstItem == layoutGuide) {
+            [recordedLayoutConstraints addObject:constraint];
+        }
+    }
+
+    return recordedLayoutConstraints;
 }
 
 - (void)tt_updateInsets:(BOOL)adjustsScrollPosition
@@ -156,58 +150,6 @@
             scrollView.contentOffset = CGPointMake(previousContentOffset.x, -scrollView.contentInset.top);
         }
     }
-}
-
-- (id<UILayoutSupport>)tt_topLayoutGuide
-{
-    if (self.tt_recordedTopLayoutSupportConstraints) {
-        return [self tt_topLayoutGuide];
-    }
-
-    __block id<UILayoutSupport> topLayoutGuide;
-
-    // record top layout guide support constraints,
-    // so we can remove them later and replace with our own
-    self.tt_recordedTopLayoutSupportConstraints = [self recordAddedConstraints:^{
-        topLayoutGuide = [self tt_topLayoutGuide];
-    }];
-
-    return topLayoutGuide;
-}
-
-- (id<UILayoutSupport>)tt_bottomLayoutGuide
-{
-    if (self.tt_recordedBottomLayoutSupportConstraints) {
-        // call super
-        return [self tt_bottomLayoutGuide];
-    }
-
-    __block id<UILayoutSupport> bottomLayoutGuide;
-
-    // record bottom layout guide support constraints,
-    // so we can remove them later and replace with our own
-    self.tt_recordedBottomLayoutSupportConstraints = [self recordAddedConstraints:^{
-        // call super
-        bottomLayoutGuide = [self tt_bottomLayoutGuide];
-    }];
-
-    return bottomLayoutGuide;
-}
-
-- (NSArray *)recordAddedConstraints:(dispatch_block_t)blockThatAddsConstraints
-{
-    // remember which constraints were there before creating bottomLayoutGuide
-    NSSet *constraintsBefore = [NSSet setWithArray:self.view.constraints];
-
-    // call block that adds constraints
-    blockThatAddsConstraints();
-
-    // remove constraints that were already there
-    NSMutableSet *layoutSupportConstraints = [NSMutableSet setWithArray:self.view.constraints];
-    [layoutSupportConstraints minusSet:constraintsBefore];
-
-    // return recorded constraints
-    return [layoutSupportConstraints allObjects];
 }
 
 @end
