@@ -44,6 +44,8 @@
 
 @property (nonatomic, strong) TTDemoScrollViewController *plainScrollView;
 
+@property (nonatomic, strong) UIViewController *storyboard;
+
 @end
 
 @implementation TTLayoutSupportSnapshotTest
@@ -51,13 +53,14 @@
 - (void)setUp
 {
     [super setUp];
-
+    
     //self.recordMode = YES;
     
     self.viewToTest = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
     
     self.withoutScrollView = [[TTDemoChildViewController alloc] init];
     self.plainScrollView = [[TTDemoScrollViewController alloc] init];
+    self.storyboard = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Storyboard Controller"];
     
     // fails sometimes without it
     self.renderAsLayer = YES;
@@ -148,6 +151,42 @@
     self.plainScrollView.tt_bottomLayoutGuideLength = 100;
     
     [self verify:V(@"top 200, bottom 100 - plain scrollview")];
+}
+
+
+#pragma mark - without scrollview
+
+- (void)testTopLayoutGuideStoryboard
+{
+    [self addController:self.storyboard];
+    
+    self.storyboard.tt_bottomLayoutGuideLength = 0;
+    
+    self.storyboard.tt_topLayoutGuideLength = 0;
+    [self verify:V(@"top 0, bottom 0 - storyboard")];
+    
+    self.storyboard.tt_topLayoutGuideLength = 50;
+    [self verify:V(@"top 50, bottom 0 - storyboard")];
+}
+
+- (void)testBottomLayoutGuideStoryboard
+{
+    [self addController:self.storyboard];
+    
+    self.storyboard.tt_topLayoutGuideLength = 0;
+    self.storyboard.tt_bottomLayoutGuideLength = 100;
+    
+    [self verify:V(@"top 0, bottom 100 - storyboard")];
+}
+
+- (void)testBothStoryboard
+{
+    [self addController:self.storyboard];
+    
+    self.storyboard.tt_topLayoutGuideLength = 200;
+    self.storyboard.tt_bottomLayoutGuideLength = 100;
+    
+    [self verify:V(@"top 200, bottom 100 - storyboard")];
 }
 
 @end
