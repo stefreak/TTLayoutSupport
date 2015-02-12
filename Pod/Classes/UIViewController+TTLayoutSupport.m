@@ -114,7 +114,8 @@
 
     for (NSLayoutConstraint *constraint in self.view.constraints) {
         // I think an equality check is the fastest check we can make here
-        if (constraint.firstItem == layoutGuide) {
+        // member check is to distinguish accidentally created constraints from _UILayoutSupportConstraints
+        if (constraint.firstItem == layoutGuide && ![constraint isMemberOfClass:[NSLayoutConstraint class]]) {
             [recordedLayoutConstraints addObject:constraint];
         }
     }
