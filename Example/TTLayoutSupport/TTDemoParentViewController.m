@@ -78,8 +78,9 @@
 
 - (void)addChildViewController
 {
-    [self addChildViewController:self.childViewController];
+    [self.childViewController willMoveToParentViewController:self];
     [self.view addSubview:self.childViewController.view];
+    [self addChildViewController:self.childViewController];
     
     self.childViewController.view.frame = self.view.bounds;
     self.childViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;

@@ -72,6 +72,11 @@
     uiviewcontrollerDemo.viewControllers = @[[[TTDemoParentViewController alloc] initWithChildViewController:
                                               [[TTDemoChildViewController alloc] init]]];
 
+    UINavigationController *storyboardcontrollerDemo = [[UINavigationController alloc] init];
+    storyboardcontrollerDemo.tabBarItem.title = @"Storyboard";
+    UIViewController *storyboardViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Storyboard Controller"];
+    storyboardcontrollerDemo.viewControllers = @[[[TTDemoParentViewController alloc] initWithChildViewController:storyboardViewController]];
+    
     UINavigationController *uiviewcontrollerScrollviewDemo = [[UINavigationController alloc] init];
     uiviewcontrollerScrollviewDemo.viewControllers = @[[[TTDemoParentViewController alloc] initWithChildViewController:
                                                         [[TTDemoScrollViewController alloc] init]]];
@@ -87,7 +92,7 @@
                                                         [[TTDemoCollectionViewController alloc] init]]];
     uicollectionviewcontrollerDemo.tabBarItem.title = @"CollectionView";
     
-    _tabBarController.viewControllers = @[uiviewcontrollerDemo, uiviewcontrollerScrollviewDemo, uitableviewcontrollerDemo, uicollectionviewcontrollerDemo];
+    _tabBarController.viewControllers = @[uiviewcontrollerDemo, storyboardcontrollerDemo, uiviewcontrollerScrollviewDemo, uitableviewcontrollerDemo, uicollectionviewcontrollerDemo];
     
     return _tabBarController;
 }
