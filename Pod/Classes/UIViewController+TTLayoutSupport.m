@@ -24,6 +24,9 @@
 // custom layout constraint that has been added to control the bottomLayoutGuide
 @property (nonatomic, strong) TTLayoutSupportConstraint *tt_bottomConstraint;
 
+// this is for NSNotificationCenter unsubscription (we can't override dealloc in a category)
+@property (nonatomic, strong) id tt_observer;
+
 @end
 
 @implementation UIViewController (TTLayoutSupport)
@@ -80,6 +83,18 @@
     self.tt_topConstraint = [constraints firstObject];
     
     [self.view addConstraints:constraints];
+
+    // this fixes a problem with iOS7.1 (GH issue #2), where the contentInset
+    // of a scrollView is overridden by the system after interface rotation
+    // this should be safe to do on iOS8 too, even if the problem does not exist there.
+    __weak typeof(self) weakSelf = self;
+    self.tt_observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceOrientationDidChangeNotification
+                                                                         object:nil
+                                                                          queue:[NSOperationQueue mainQueue]
+                                                                     usingBlock:^(NSNotification *note) {
+        __strong typeof(self) self = weakSelf;
+        [self tt_updateInsets:NO];
+    }];
 }
 
 - (void)tt_ensureCustomBottomConstraint
@@ -195,6 +210,16 @@
 - (void)setTt_recordedBottomLayoutSupportConstraints:(NSArray *)constraints
 {
     objc_setAssociatedObject(self, @selector(tt_recordedBottomLayoutSupportConstraints), constraints, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)setTt_observer:(id)tt_observer
+{
+    objc_setAssociatedObject(self, @selector(tt_observer), tt_observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (id)tt_observer
+{
+    return objc_getAssociatedObject(self, @selector(tt_observer));
 }
 
 @end
