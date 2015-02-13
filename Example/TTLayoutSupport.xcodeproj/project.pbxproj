@@ -22,7 +22,6 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* TTLayoutSupportSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* TTLayoutSupportSpec.m */; };
 		6FB4C2EA815A00B1CBC0FA06 /* libPods-TTLayoutSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E74F8748CA2A3BE6EA11BC59 /* libPods-TTLayoutSupport.a */; };
-		AB08F3121A8D90D500D0A6F3 /* TTDeallocHook.m in Sources */ = {isa = PBXBuildFile; fileRef = AB08F3111A8D90D500D0A6F3 /* TTDeallocHook.m */; };
 		AB27E2841A2418AD00DCB9E7 /* TTDemoParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB27E2831A2418AD00DCB9E7 /* TTDemoParentViewController.m */; };
 		AB27E2871A2420CA00DCB9E7 /* TTDemoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB27E2861A2420CA00DCB9E7 /* TTDemoScrollViewController.m */; };
 		AB27E28A1A2427C700DCB9E7 /* TTDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB27E2891A2427C700DCB9E7 /* TTDemoTableViewController.m */; };
@@ -70,8 +69,6 @@
 		8AF9CF21CECBB88A5B8BB7D0 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91DB9671939E3C45718E3465 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A7A01E0DBD16F98E629CDBBC /* TTLayoutSupport.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TTLayoutSupport.podspec; path = ../TTLayoutSupport.podspec; sourceTree = "<group>"; };
-		AB08F3101A8D90D500D0A6F3 /* TTDeallocHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDeallocHook.h; sourceTree = "<group>"; };
-		AB08F3111A8D90D500D0A6F3 /* TTDeallocHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDeallocHook.m; sourceTree = "<group>"; };
 		AB27E2821A2418AC00DCB9E7 /* TTDemoParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDemoParentViewController.h; sourceTree = "<group>"; };
 		AB27E2831A2418AD00DCB9E7 /* TTDemoParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDemoParentViewController.m; sourceTree = "<group>"; };
 		AB27E2851A2420CA00DCB9E7 /* TTDemoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDemoScrollViewController.h; sourceTree = "<group>"; };
@@ -224,8 +221,6 @@
 				AB27E2911A242BA500DCB9E7 /* UIViewController+TTLayoutSupport.m */,
 				AB27E28E1A242BA500DCB9E7 /* TTLayoutSupportConstraint.h */,
 				AB27E28F1A242BA500DCB9E7 /* TTLayoutSupportConstraint.m */,
-				AB08F3101A8D90D500D0A6F3 /* TTDeallocHook.h */,
-				AB08F3111A8D90D500D0A6F3 /* TTDeallocHook.m */,
 			);
 			name = TTLayoutSupport;
 			sourceTree = "<group>";
@@ -413,7 +408,6 @@
 				6003F5A7195388D20070C39A /* TTDemoChildViewController.m in Sources */,
 				AB27E2921A242BA500DCB9E7 /* TTLayoutSupportConstraint.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				AB08F3121A8D90D500D0A6F3 /* TTDeallocHook.m in Sources */,
 				AB27E2871A2420CA00DCB9E7 /* TTDemoScrollViewController.m in Sources */,
 				AB27E2841A2418AD00DCB9E7 /* TTDemoParentViewController.m in Sources */,
 			);

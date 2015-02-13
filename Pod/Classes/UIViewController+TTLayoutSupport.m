@@ -9,7 +9,6 @@
 #import "UIViewController+TTLayoutSupport.h"
 #import "TTLayoutSupportConstraint.h"
 #import <objc/runtime.h>
-#import "TTDeallocHook.h"
 
 @interface UIViewController (TTLayoutSupportPrivate)
 
@@ -24,6 +23,14 @@
 
 // custom layout constraint that has been added to control the bottomLayoutGuide
 @property (nonatomic, strong) TTLayoutSupportConstraint *tt_bottomConstraint;
+
+@end
+
+@interface TTDeallocHook : NSObject
+
+@property (copy, nonatomic) dispatch_block_t callback;
+
++ (id)attachTo:(id)target callback:(dispatch_block_t)block;
 
 @end
 
@@ -211,6 +218,46 @@
 - (void)setTt_recordedBottomLayoutSupportConstraints:(NSArray *)constraints
 {
     objc_setAssociatedObject(self, @selector(tt_recordedBottomLayoutSupportConstraints), constraints, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+@end
+
+// Address of a static global var can be used as a key
+static void *kDeallocHookAssociation = &kDeallocHookAssociation;
+
+@implementation TTDeallocHook
+
++ (id)attachTo:(id)target callback:(dispatch_block_t)block
+{
+    TTDeallocHook *hook = [[TTDeallocHook alloc] initWithCallback:block];
+    
+    // The trick is that associations are released when your target
+    // object gets deallocated, so our DeallocHook object will get
+    // deallocated right after your object
+    objc_setAssociatedObject(target, kDeallocHookAssociation, hook, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    return hook;
+}
+
+- (id)initWithCallback:(dispatch_block_t)block
+{
+    self = [super init];
+    
+    if (self != nil) {
+        // Here we just copy the callback for later
+        self.callback = block;
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    // And we place our callback within the -dealloc method
+    // of your helper class.
+    if (self.callback != nil) {
+        self.callback();
+    }
 }
 
 @end
