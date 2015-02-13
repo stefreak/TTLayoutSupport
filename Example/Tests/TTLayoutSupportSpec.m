@@ -16,6 +16,28 @@ SPEC_BEGIN(TTLayoutSupportSpec)
 
 describe(@"TTLayoutSupport", ^{
 
+    context(@"memory", ^{
+        beforeEach(^{
+        });
+
+        it(@"should not be leaking", ^{
+            __weak TTDemoChildViewController *weakReference;
+
+            @autoreleasepool {
+                TTDemoChildViewController *controller = [TTDemoChildViewController new];
+                weakReference = controller;
+                
+                // Kiwi matchers retain their object. so I'm using plain old assert here
+                NSAssert(controller, @"controller is nil!");
+                NSAssert(weakReference, @"weakReference is nil!");
+                
+                controller.tt_topLayoutGuideLength = 50;
+                controller.tt_bottomLayoutGuideLength = 50;
+            }
+
+            [[weakReference should] beNil];
+        });
+    });
     
     context(@"without UIScrollView", ^{
         
