@@ -92,7 +92,7 @@
                                                                          object:nil
                                                                           queue:[NSOperationQueue mainQueue]
                                                                      usingBlock:^(NSNotification *note) {
-        __strong typeof(self) self = weakSelf;
+        __strong typeof(weakSelf) self = weakSelf;
         [self tt_updateInsets:NO];
     }];
 }
