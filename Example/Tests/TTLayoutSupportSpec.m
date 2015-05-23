@@ -31,8 +31,8 @@ describe(@"TTLayoutSupport", ^{
                 NSAssert(controller, @"controller is nil!");
                 NSAssert(weakReference, @"weakReference is nil!");
                 
-                controller.tt_topLayoutGuideLength = 50;
-                controller.tt_bottomLayoutGuideLength = 50;
+                controller.tt_topLayoutGuide.length = 50;
+                controller.tt_bottomLayoutGuide.length = 50;
             }
 
             [[weakReference should] beNil];
@@ -54,7 +54,7 @@ describe(@"TTLayoutSupport", ^{
         it(@"can change the topLayoutGuideLength", ^{
             [[theValue(controller.topLayoutGuide.length) should] equal:@0];
             
-            controller.tt_topLayoutGuideLength = 50;
+            controller.tt_topLayoutGuide.length = 50;
 
             [((UIView *)controller.topLayoutGuide) setNeedsLayout];
             [((UIView *)controller.topLayoutGuide) layoutIfNeeded];
@@ -65,7 +65,7 @@ describe(@"TTLayoutSupport", ^{
         it(@"can change the bottomLayoutGuideLength", ^{
             [[theValue(controller.bottomLayoutGuide.length) should] equal:@0];
             
-            controller.tt_bottomLayoutGuideLength = 50;
+            controller.tt_bottomLayoutGuide.length = 50;
 
             [((UIView *)controller.bottomLayoutGuide) setNeedsLayout];
             [((UIView *)controller.bottomLayoutGuide) layoutIfNeeded];

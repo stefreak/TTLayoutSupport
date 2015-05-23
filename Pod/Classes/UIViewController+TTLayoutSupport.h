@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTLayoutGuide.h"
 
 @interface UIViewController (TTLayoutSupport)
 
-// reading from this property is equivalent to reading the bottomLayoutGuide.length property
-// writing to this property means changing the bottomLayoutGuide.length property
-@property (assign, nonatomic) CGFloat tt_bottomLayoutGuideLength;
+@property (nonatomic, readonly) TTLayoutGuide* tt_topLayoutGuide;
 
-// reading from this property is equivalent to reading the topLayoutGuide.length property
-// writing to this property means changing the topLayoutGuide.length property
-@property (assign, nonatomic) CGFloat tt_topLayoutGuideLength;
+@property (nonatomic, readonly) TTLayoutGuide* tt_bottomLayoutGuide;
 
 @end

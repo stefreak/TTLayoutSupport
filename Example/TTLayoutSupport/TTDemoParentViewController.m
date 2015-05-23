@@ -65,13 +65,13 @@
 - (void)topSliderDidChange:(UISlider *)topSlider
 {
     // change topLayoutGuide of child viewController
-    self.childViewController.tt_topLayoutGuideLength = topSlider.value;
+    self.childViewController.tt_topLayoutGuide.length = topSlider.value;
 }
 
 - (void)bottomSliderDidChange:(UISlider *)bottomSlider
 {
     // change bottomLayoutGuide of child viewController
-    self.childViewController.tt_bottomLayoutGuideLength = bottomSlider.value;
+    self.childViewController.tt_bottomLayoutGuide.length = bottomSlider.value;
 }
 
 #pragma mark - manage view hierarchy
