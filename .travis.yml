@@ -7,5 +7,6 @@ env:
   matrix:
     - TEST_SDK=iphonesimulator7.1
     - TEST_SDK=iphonesimulator8.1
+    - TEST_SDK=iphonesimulator8.3
 script:
 - pod lib lint && xctool build-tests && xctool run-tests -test-sdk $TEST_SDK
