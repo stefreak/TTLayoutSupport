@@ -29,7 +29,7 @@
 		AB27E2931A242BA500DCB9E7 /* UIViewController+TTLayoutSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = AB27E2911A242BA500DCB9E7 /* UIViewController+TTLayoutSupport.m */; };
 		AB6FD3301A24CFB50095EFDE /* TTLayoutSupportSnapshotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6FD32F1A24CFB50095EFDE /* TTLayoutSupportSnapshotTest.m */; };
 		ABB780B61A8D6523009F3E8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABB780B51A8D6523009F3E8F /* Main.storyboard */; };
-		F9A776331B10F69A009E9F87 /* TTLayoutGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A776321B10F69A009E9F87 /* TTLayoutGuide.m */; };
+		F9A776361B1127E8009E9F87 /* TTLayoutGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A776351B1127E8009E9F87 /* TTLayoutGuide.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +84,8 @@
 		ABB780B51A8D6523009F3E8F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E74F8748CA2A3BE6EA11BC59 /* libPods-TTLayoutSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TTLayoutSupport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A5BE20425BB87D5C995115 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F9A776311B10F69A009E9F87 /* TTLayoutGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTLayoutGuide.h; sourceTree = "<group>"; };
-		F9A776321B10F69A009E9F87 /* TTLayoutGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLayoutGuide.m; sourceTree = "<group>"; };
+		F9A776341B1127E8009E9F87 /* TTLayoutGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLayoutGuide.h; path = ../Pod/Classes/TTLayoutGuide.h; sourceTree = "<group>"; };
+		F9A776351B1127E8009E9F87 /* TTLayoutGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLayoutGuide.m; path = ../Pod/Classes/TTLayoutGuide.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,8 +219,8 @@
 			children = (
 				AB27E2901A242BA500DCB9E7 /* UIViewController+TTLayoutSupport.h */,
 				AB27E2911A242BA500DCB9E7 /* UIViewController+TTLayoutSupport.m */,
-				F9A776311B10F69A009E9F87 /* TTLayoutGuide.h */,
-				F9A776321B10F69A009E9F87 /* TTLayoutGuide.m */,
+				F9A776341B1127E8009E9F87 /* TTLayoutGuide.h */,
+				F9A776351B1127E8009E9F87 /* TTLayoutGuide.m */,
 			);
 			name = TTLayoutSupport;
 			sourceTree = "<group>";
@@ -401,12 +401,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9A776331B10F69A009E9F87 /* TTLayoutGuide.m in Sources */,
 				AB27E28A1A2427C700DCB9E7 /* TTDemoTableViewController.m in Sources */,
 				AB27E2931A242BA500DCB9E7 /* UIViewController+TTLayoutSupport.m in Sources */,
 				6003F59E195388D20070C39A /* TTAppDelegate.m in Sources */,
 				AB27E28D1A2429A100DCB9E7 /* TTDemoCollectionViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* TTDemoChildViewController.m in Sources */,
+				F9A776361B1127E8009E9F87 /* TTLayoutGuide.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				AB27E2871A2420CA00DCB9E7 /* TTDemoScrollViewController.m in Sources */,
 				AB27E2841A2418AD00DCB9E7 /* TTDemoParentViewController.m in Sources */,
