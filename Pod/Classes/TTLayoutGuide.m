@@ -111,7 +111,13 @@
                                                                   attribute:viewAttribute
                                                                  multiplier:multiplier
                                                                    constant:offset];
-    [self.viewController.view addConstraint:constraint];
+
+    UIView *commonSuperview = self.viewController.view;
+    if (view) {
+         commonSuperview = [self findCommonSuperviewForView:(UIView *)[self layoutGuide] otherView:view];
+    }
+    
+    [commonSuperview addConstraint:constraint];
 
     return constraint;
 }
@@ -140,6 +146,22 @@
 }
 
 #pragma mark - helpers
+
+// copied from PureLayout Copyright (c) 2014-2015 Tyler Fox
+// MIT License https://github.com/smileyborg/PureLayout/blob/master/LICENSE
+- (UIView *)findCommonSuperviewForView:(UIView *)view otherView:(UIView *)otherView
+{
+    UIView *commonSuperview = nil;
+    UIView *startView = view;
+    do {
+        if ([otherView isDescendantOfView:startView]) {
+            commonSuperview = startView;
+        }
+        startView = startView.superview;
+    } while (startView && !commonSuperview);
+    NSAssert(commonSuperview, @"Can't constrain two views that do not share a common superview. Make sure that both views have been added into the same view hierarchy.");
+    return commonSuperview;
+}
 
 - (id<UILayoutSupport>)layoutGuide
 {

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger/*NSLayoutAttribute*/, TTLayoutGuideAttribute) {
+    TTLayoutGuideAttributeTop = NSLayoutAttributeTop,
     TTLayoutGuideAttributeBottom = NSLayoutAttributeBottom,
     TTLayoutGuideAttributeLength = NSLayoutAttributeHeight,
 };
