@@ -7,6 +7,7 @@ env:
   matrix:
     - TEST_SDK=iphonesimulator7.1
     - TEST_SDK=iphonesimulator8.1
-    - TEST_SDK=iphonesimulator8.3
+# travis doesn't seem to have 8.3 yet
+#    - TEST_SDK=iphonesimulator8.3
 script:
 - pod lib lint && xctool build-tests && xctool run-tests -test-sdk $TEST_SDK
