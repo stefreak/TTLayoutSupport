@@ -13,9 +13,9 @@
 
 @property (nonatomic, strong) UIViewController *childViewController;
 
-@property (nonatomic, strong) UISlider *topSlider;
+@property (nonatomic, strong) NSLayoutConstraint *topLayoutGuideConstraint;
 
-@property (nonatomic, strong) UISlider *bottomSlider;
+@property (nonatomic, strong) NSLayoutConstraint *bottomLayoutGuideConstraint;
 
 @end
 
@@ -40,24 +40,7 @@
     [self addTopBar];
     [self addBottomBar];
     
-    
     self.tabBarItem.title = self.title;
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-
-    self.topSlider.minimumValue = self.topLayoutGuide.length + self.topSlider.superview.frame.size.height;
-    self.bottomSlider.minimumValue = self.bottomLayoutGuide.length + self.bottomSlider.superview.frame.size.height;
-    
-    self.topSlider.maximumValue = self.topSlider.minimumValue * 4;
-    self.bottomSlider.maximumValue = self.bottomSlider.minimumValue * 4;
-    
-    [self topSliderDidChange:self.topSlider];
-    [self bottomSliderDidChange:self.bottomSlider];
-    
-    [self.view layoutSubviews];
 }
 
 #pragma mark - UISlider actions
@@ -65,13 +48,13 @@
 - (void)topSliderDidChange:(UISlider *)topSlider
 {
     // change topLayoutGuide of child viewController
-    self.childViewController.tt_topLayoutGuideLength = topSlider.value;
+    self.topLayoutGuideConstraint.constant = topSlider.value;
 }
 
 - (void)bottomSliderDidChange:(UISlider *)bottomSlider
 {
     // change bottomLayoutGuide of child viewController
-    self.childViewController.tt_bottomLayoutGuideLength = bottomSlider.value;
+    self.bottomLayoutGuideConstraint.constant = - bottomSlider.value;
 }
 
 #pragma mark - manage view hierarchy
@@ -93,6 +76,7 @@
     topBar.translatesAutoresizingMaskIntoConstraints = NO;
     
     UISlider *topSlider = [[UISlider alloc] init];
+    topSlider.maximumValue = 350;
     topSlider.translatesAutoresizingMaskIntoConstraints = NO;
     
     [topSlider addTarget:self action:@selector(topSliderDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -120,8 +104,11 @@
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
-    
-    self.topSlider = topSlider;
+
+    self.topLayoutGuideConstraint =
+    [self.childViewController.tt_topLayoutGuide constrainAttribute:TTLayoutGuideAttributeBottom
+                                                       toAttribute:NSLayoutAttributeBottom
+                                                            ofView:topBar];
 }
 
 - (void)addBottomBar
@@ -131,6 +118,7 @@
     bottomBar.translatesAutoresizingMaskIntoConstraints = NO;
     
     UISlider *bottomSlider = [[UISlider alloc] init];
+    bottomSlider.maximumValue = 350;
     bottomSlider.translatesAutoresizingMaskIntoConstraints = NO;
     
     [bottomSlider addTarget:self action:@selector(bottomSliderDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -159,7 +147,10 @@
                                                                       metrics:nil
                                                                         views:views]];
     
-    self.bottomSlider = bottomSlider;
+    self.bottomLayoutGuideConstraint =
+    [self.childViewController.tt_bottomLayoutGuide constrainAttribute:TTLayoutGuideAttributeTop
+                                                          toAttribute:NSLayoutAttributeTop
+                                                               ofView:bottomBar];
 }
 
 @end

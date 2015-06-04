@@ -16,7 +16,10 @@ Even respects `automaticallyAdjustsScrollViewInsets` property, just like UINavig
 ## Usage
 
 Just import `UIViewController+TTLayoutSupport.h` and you can manipulate `topLayoutGuide` and `bottomLayoutGuide`
-via the `tt_topLayoutGuideLength` and `tt_bottomLayoutGuideLength` properties.
+via the `tt_topLayoutGuide` and `tt_bottomLayoutGuide` properties.
+
+See the [Documentation of TTLayoutGuide](http://cocoadocs.org/docsets/TTLayoutSupport/) for more information how
+the layout guide can be set and constrained.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 

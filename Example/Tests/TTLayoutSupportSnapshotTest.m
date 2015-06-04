@@ -89,12 +89,12 @@
 {
     [self addController:self.withoutScrollView];
 
-    self.withoutScrollView.tt_bottomLayoutGuideLength = 0;
+    self.withoutScrollView.tt_bottomLayoutGuide.length = 0;
     
-    self.withoutScrollView.tt_topLayoutGuideLength = 0;
+    self.withoutScrollView.tt_topLayoutGuide.length = 0;
     [self verify:V(@"top 0, bottom 0 - w_o scrollview")];
     
-    self.withoutScrollView.tt_topLayoutGuideLength = 50;
+    self.withoutScrollView.tt_topLayoutGuide.length = 50;
     [self verify:V(@"top 50, bottom 0 - w_o scrollview")];
 }
 
@@ -102,8 +102,8 @@
 {
     [self addController:self.withoutScrollView];
     
-    self.withoutScrollView.tt_topLayoutGuideLength = 0;
-    self.withoutScrollView.tt_bottomLayoutGuideLength = 100;
+    self.withoutScrollView.tt_topLayoutGuide.length = 0;
+    self.withoutScrollView.tt_bottomLayoutGuide.length = 100;
     
     [self verify:V(@"top 0, bottom 100 - w_o scrollview")];
 }
@@ -112,8 +112,8 @@
 {
     [self addController:self.withoutScrollView];
     
-    self.withoutScrollView.tt_topLayoutGuideLength = 200;
-    self.withoutScrollView.tt_bottomLayoutGuideLength = 100;
+    self.withoutScrollView.tt_topLayoutGuide.length = 200;
+    self.withoutScrollView.tt_bottomLayoutGuide.length = 100;
     
     [self verify:V(@"top 200, bottom 100 - w_o scrollview")];
 }
@@ -124,12 +124,12 @@
 {
     [self addController:self.plainScrollView];
     
-    self.plainScrollView.tt_bottomLayoutGuideLength = 0;
+    self.plainScrollView.tt_bottomLayoutGuide.length = 0;
     
-    self.plainScrollView.tt_topLayoutGuideLength = 0;
+    self.plainScrollView.tt_topLayoutGuide.length = 0;
     [self verify:V(@"top 0, bottom 0 - plain scrollview")];
 
-    self.plainScrollView.tt_topLayoutGuideLength = 50;
+    self.plainScrollView.tt_topLayoutGuide.length = 50;
     [self verify:V(@"top 50, bottom 0 - plain scrollview")];
 }
 
@@ -137,8 +137,8 @@
 {
     [self addController:self.plainScrollView];
     
-    self.plainScrollView.tt_topLayoutGuideLength = 0;
-    self.plainScrollView.tt_bottomLayoutGuideLength = 100;
+    self.plainScrollView.tt_topLayoutGuide.length = 0;
+    self.plainScrollView.tt_bottomLayoutGuide.length = 100;
     
     [self verify:V(@"top 0, bottom 100 - plain scrollview")];
 }
@@ -147,8 +147,8 @@
 {
     [self addController:self.plainScrollView];
     
-    self.plainScrollView.tt_topLayoutGuideLength = 200;
-    self.plainScrollView.tt_bottomLayoutGuideLength = 100;
+    self.plainScrollView.tt_topLayoutGuide.length = 200;
+    self.plainScrollView.tt_bottomLayoutGuide.length = 100;
     
     [self verify:V(@"top 200, bottom 100 - plain scrollview")];
 }
@@ -160,12 +160,12 @@
 {
     [self addController:self.storyboard];
     
-    self.storyboard.tt_bottomLayoutGuideLength = 0;
+    self.storyboard.tt_bottomLayoutGuide.length = 0;
     
-    self.storyboard.tt_topLayoutGuideLength = 0;
+    self.storyboard.tt_topLayoutGuide.length = 0;
     [self verify:V(@"top 0, bottom 0 - storyboard")];
     
-    self.storyboard.tt_topLayoutGuideLength = 50;
+    self.storyboard.tt_topLayoutGuide.length = 50;
     [self verify:V(@"top 50, bottom 0 - storyboard")];
 }
 
@@ -173,8 +173,8 @@
 {
     [self addController:self.storyboard];
     
-    self.storyboard.tt_topLayoutGuideLength = 0;
-    self.storyboard.tt_bottomLayoutGuideLength = 100;
+    self.storyboard.tt_topLayoutGuide.length = 0;
+    self.storyboard.tt_bottomLayoutGuide.length = 100;
     
     [self verify:V(@"top 0, bottom 100 - storyboard")];
 }
@@ -183,8 +183,8 @@
 {
     [self addController:self.storyboard];
     
-    self.storyboard.tt_topLayoutGuideLength = 200;
-    self.storyboard.tt_bottomLayoutGuideLength = 100;
+    self.storyboard.tt_topLayoutGuide.length = 200;
+    self.storyboard.tt_bottomLayoutGuide.length = 100;
     
     [self verify:V(@"top 200, bottom 100 - storyboard")];
 }
