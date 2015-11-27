@@ -3,11 +3,15 @@
 # * https://github.com/supermarin/xcpretty#usage
 
 language: objective-c
+osx_image: xcode7.1
 env:
   matrix:
-    - TEST_SDK=iphonesimulator7.1
-    - TEST_SDK=iphonesimulator8.1
-# travis doesn't seem to have 8.3 yet
-#    - TEST_SDK=iphonesimulator8.3
+    - DESTINATION="OS=7.0,name=iPhone 5"
+    - DESTINATION="OS=7.1,name=iPhone 5"
+    - DESTINATION="OS=8.1,name=iPhone 5"
+    - DESTINATION="OS=8.2,name=iPhone 5"
+    - DESTINATION="OS=8.3,name=iPhone 5"
+    - DESTINATION="OS=9.0,name=iPhone 5"
+    - DESTINATION="OS=9.1,name=iPhone 5"
 script:
-- pod lib lint && xctool build-tests && xctool run-tests -test-sdk $TEST_SDK
+- pod lib lint && xctool build-tests && xctool run-tests -sdk iphonesimulator -destination "$DESTINATION"
