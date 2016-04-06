@@ -1,3 +1,9 @@
+# iOS 9 compatiblity notes
+
+`TTLayoutSupport` is not needed anymore in iOS9 and also does not work. See [Issue #11](https://github.com/stefreak/TTLayoutSupport/issues/11).
+
+Apps that are already released pre-iOS9 to the store are still working on iOS9!
+
 # TTLayoutSupport
 
 [![CI Status](http://img.shields.io/travis/stefreak/TTLayoutSupport.svg?style=flat)](https://travis-ci.org/stefreak/TTLayoutSupport)
