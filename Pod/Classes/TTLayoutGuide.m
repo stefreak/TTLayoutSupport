@@ -38,6 +38,20 @@
     return self;
 }
 
+
+#pragma mark - Properties
+
+@synthesize length = _length;
+@synthesize viewController = _viewController;
+@synthesize layoutGuideSelector = _layoutGuideSelector;
+@synthesize originalLengthConstraint = _originalLengthConstraint;
+@synthesize customLengthConstraint = _customLengthConstraint;
+
+@synthesize topAnchor = _topAnchor;
+@synthesize heightAnchor = _heightAnchor;
+@synthesize bottomAnchor = _bottomAnchor;
+
+
 #pragma mark - set static layout guide length
 
 - (CGFloat)length
